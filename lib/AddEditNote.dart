@@ -148,7 +148,7 @@ class NoteState extends State<Note> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => WindowAfierLogin(
-                                    uid: null, name: null, email: null)),
+                                    uid: uid, name: name, email: email)),
                             (Route<dynamic> route) => false,
                           );
                         }),
@@ -158,7 +158,6 @@ class NoteState extends State<Note> {
                         child:
                             _NoteButton('Add Notify', Colors.orange, () async {
                           /*
-
                           showDateTimeDialog(context, initialDate: selectedDate,
                               onSelectedDate: (selectedDate) {
                             setState(() {
@@ -167,8 +166,7 @@ class NoteState extends State<Note> {
                                   selectedDate.toString().substring(0, 16);
                             });
                           });
-
-                       */
+                      */
                         }),
                       )
               ],
