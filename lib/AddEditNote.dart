@@ -5,6 +5,7 @@ import 'AddNote.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:share/share.dart';
+import 'Alaramsetting.dart';
 
 enum NoteMode { Editing, Adding }
 
@@ -164,7 +165,6 @@ class NoteState extends State<Note> {
                         padding: const EdgeInsets.only(left: 8.0),
                         child:
                             _NoteButton('Add Notify', Colors.black, () async {
-                          /*
                           showDateTimeDialog(context, initialDate: selectedDate,
                               onSelectedDate: (selectedDate) {
                             setState(() {
@@ -173,7 +173,6 @@ class NoteState extends State<Note> {
                                   selectedDate.toString().substring(0, 16);
                             });
                           });
-                      */
                         }),
                       )
               ],
