@@ -5,6 +5,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'main.dart';
 import 'Window_after_login.dart';
 import 'SingupPage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -134,12 +135,19 @@ class _HomePageState extends State<HomePage> {
       displayToastMessage("Error " + erMsg.toString(), context);
     }))
         .user;
+    DocumentSnapshot variable = await Firestore.instance
+        .collection('users')
+        .document(firebaseUser.uid)
+        .get();
 
     if (firebaseUser != null) {
       userResf.child(firebaseUser.uid).once().then((DataSnapshot snap) {
         if (snap != null) {
-          Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => WindowAfierLogin()));
+          Navigator.of(context).pushReplacement(MaterialPageRoute(
+              builder: (context) => WindowAfierLogin(
+                  uid: firebaseUser.uid,
+                  name: firebaseUser.displayName,
+                  email: firebaseUser.email)));
           displayToastMessage(
               "Congratulations Your logged successfully", context);
         } else {
