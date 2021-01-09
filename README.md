@@ -2,6 +2,8 @@
 
 A new Flutter application.
 ![1](https://user-images.githubusercontent.com/10377875/104090795-e0822980-529a-11eb-8b57-56b14fa45e49.png)
+![2](https://user-images.githubusercontent.com/10377875/104090843-28a14c00-529b-11eb-9def-4663950a3e47.png)
+
 
 
 ## Getting Started
