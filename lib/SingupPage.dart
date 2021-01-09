@@ -11,6 +11,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  TextEditingController nameTextEditingController = TextEditingController();
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
 
@@ -28,6 +29,21 @@ class _HomePageState extends State<HomePage> {
           ),
           SizedBox(
             height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Row(
+              children: [
+                IconButton(icon: Icon(Icons.person), onPressed: null),
+                Expanded(
+                    child: Container(
+                        margin: EdgeInsets.only(right: 20, left: 10),
+                        child: TextField(
+                          controller: nameTextEditingController,
+                          decoration: InputDecoration(hintText: 'Name'),
+                        )))
+              ],
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(5.0),
@@ -126,10 +142,10 @@ class _HomePageState extends State<HomePage> {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   void loginAuthenticationUser(BuildContext context) async {
     final User firebaseUser = (await _firebaseAuth
-        .signInWithEmailAndPassword(
-        email: emailTextEditingController.text,
-        password: passwordTextEditingController.text)
-        .catchError((erMsg) {
+            .signInWithEmailAndPassword(
+                email: emailTextEditingController.text,
+                password: passwordTextEditingController.text)
+            .catchError((erMsg) {
       displayToastMessage("Error " + erMsg.toString(), context);
     }))
         .user;
