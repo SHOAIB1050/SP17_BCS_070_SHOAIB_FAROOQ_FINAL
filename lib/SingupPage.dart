@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
+import 'Home.dart';
 import 'main.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 
-class HomePage extends StatefulWidget {
+class Singup extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _SingupState createState() => _SingupState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _SingupState extends State<Singup> {
   TextEditingController nameTextEditingController = TextEditingController();
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
@@ -94,7 +93,9 @@ class _HomePageState extends State<HomePage> {
                           'Email Address is not Valid', context);
                     } else if (passwordTextEditingController.text.isEmpty) {
                       displayToastMessage('Password is Necessary', context);
-                    } else {}
+                    } else {
+                      regesterNewUser(context);
+                    }
                   },
                   color: Colors.teal[700],
                   child: Text(
@@ -149,7 +150,6 @@ class _HomePageState extends State<HomePage> {
             password: passwordTextEditingController.text);
     User user = result.user;
     await user.updateProfile(displayName: nameTextEditingController.text);
-    // user.sendEmailVerification();
     print(user);
     if (user != null) {
       FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -168,9 +168,9 @@ class _HomePageState extends State<HomePage> {
       };
       userResf.child(user.uid).set(userDataMap);
       displayToastMessage(
-          "Congradulations Your Account has been Created", context);
+          "Congratulations Your Account has been Created", context);
       Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
+          .pushReplacement(MaterialPageRoute(builder: (context) => Singup()));
     } else {
       displayToastMessage("New user has not been Created", context);
     }
@@ -178,7 +178,7 @@ class _HomePageState extends State<HomePage> {
 
   movetolastScreen() {
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => HomePage()));
+        context, MaterialPageRoute(builder: (context) => Singup()));
   }
 }
 

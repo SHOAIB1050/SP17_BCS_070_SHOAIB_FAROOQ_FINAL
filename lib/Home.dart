@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'main.dart';
 import 'Window_after_login.dart';
-import 'Singup.dart';
+import 'SingupPage.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -99,7 +99,7 @@ class _HomePageState extends State<HomePage> {
           InkWell(
             onTap: () {
               Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => SingupPage()));
+                  .push(MaterialPageRoute(builder: (context) => Singup()));
             },
             child: Center(
               child: RichText(
