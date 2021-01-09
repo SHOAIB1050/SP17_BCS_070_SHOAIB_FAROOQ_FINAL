@@ -92,13 +92,11 @@ class _HomePageState extends State<HomePage> {
                           'Email Address is not Valid', context);
                     } else if (passwordTextEditingController.text.isEmpty) {
                       displayToastMessage('Password is Necessary', context);
-                    } else {
-                      loginAuthenticationUser(context);
-                    }
+                    } else {}
                   },
                   color: Colors.teal[700],
                   child: Text(
-                    'Login',
+                    'SingUp',
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -114,16 +112,16 @@ class _HomePageState extends State<HomePage> {
           InkWell(
             onTap: () {
               Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => SingupPage()));
+                  .push(MaterialPageRoute(builder: (context) => HomePage()));
             },
             child: Center(
               child: RichText(
                 text: TextSpan(
-                    text: 'Don\'t have an account?',
+                    text: 'Already have an account?',
                     style: TextStyle(color: Colors.black),
                     children: [
                       TextSpan(
-                        text: '  SIGN UP ',
+                        text: '  Login ',
                         style: TextStyle(
                             color: Colors.pink, fontWeight: FontWeight.bold),
                       )
@@ -137,34 +135,6 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
-  }
-
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  void loginAuthenticationUser(BuildContext context) async {
-    final User firebaseUser = (await _firebaseAuth
-            .signInWithEmailAndPassword(
-                email: emailTextEditingController.text,
-                password: passwordTextEditingController.text)
-            .catchError((erMsg) {
-      displayToastMessage("Error " + erMsg.toString(), context);
-    }))
-        .user;
-
-    if (firebaseUser != null) {
-      userResf.child(firebaseUser.uid).once().then((DataSnapshot snap) {
-        if (snap != null) {
-          Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => WindowAfierLogin()));
-          displayToastMessage(
-              "Congratulations Your logged successfully", context);
-        } else {
-          _firebaseAuth.signOut();
-          displayToastMessage("Not Record found this user", context);
-        }
-      });
-    } else {
-      displayToastMessage("Error exist", context);
-    }
   }
 }
 
