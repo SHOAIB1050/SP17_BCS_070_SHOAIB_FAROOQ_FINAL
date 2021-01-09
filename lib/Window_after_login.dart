@@ -75,13 +75,11 @@ class _WindowAfierLoginState extends State<WindowAfierLogin> {
                 //FOR EDITING
                 return GestureDetector(
                   onTap: () {
-                    /*
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                                Note(NoteMode.Editing, notes[index])));
-                 */
+                            builder: (context) => Note(NoteMode.Editing,
+                                notes[index], uid, name, email)));
                   },
                   child: Card(
                     child: Padding(

@@ -117,15 +117,14 @@ class NoteState extends State<Note> {
                     if (datetime.length != 0) {
                       scheduleNotification(selectedDate, title);
                     }
-                  }
-                  /*else if (widget?.noteMode == NoteMode.Editing) {
+                  } else if (widget?.noteMode == NoteMode.Editing) {
                     NoteProvider.updateNote({
                       'id': widget.note['id'],
                       'title': _titleController.text,
                       'text': _textController.text,
                       'datetime': datetime
                     });
-                  }*/
+                  }
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
