@@ -77,7 +77,7 @@ class NoteState extends State<Note> {
             Text(widget.noteMode == NoteMode.Adding ? 'Add note' : 'Edit note'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -143,7 +143,7 @@ class NoteState extends State<Note> {
                 Container(
                   height: 16.0,
                 ),
-                _NoteButton('Cancel', Colors.grey, () {
+                _NoteButton('Cancel', Colors.purple, () {
                   Navigator.pop(context);
                 }),
                 widget.noteMode == NoteMode.Editing
@@ -163,7 +163,7 @@ class NoteState extends State<Note> {
                     : Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child:
-                            _NoteButton('Add Notify', Colors.orange, () async {
+                            _NoteButton('Add Notify', Colors.black, () async {
                           /*
                           showDateTimeDialog(context, initialDate: selectedDate,
                               onSelectedDate: (selectedDate) {
@@ -216,8 +216,8 @@ class _NoteButton extends StatelessWidget {
         _text,
         style: TextStyle(color: Colors.white),
       ),
-      height: 40,
-      minWidth: 80,
+      height: 50,
+      minWidth: 50,
       color: _color,
     );
   }
