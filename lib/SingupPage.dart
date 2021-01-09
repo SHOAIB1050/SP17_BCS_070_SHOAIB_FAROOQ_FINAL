@@ -3,7 +3,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'main.dart';
-import 'Window_after_login.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -135,6 +137,48 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
+  }
+
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  void regesterNewUser(BuildContext context) async {
+    //DATA STORE ON FORESTORE
+    await Firebase.initializeApp();
+    UserCredential result = await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(
+            email: emailTextEditingController.text,
+            password: passwordTextEditingController.text);
+    User user = result.user;
+    await user.updateProfile(displayName: nameTextEditingController.text);
+    // user.sendEmailVerification();
+    print(user);
+    if (user != null) {
+      FirebaseFirestore _firestore = FirebaseFirestore.instance;
+      DocumentReference ref = _firestore.collection('users').doc(user.uid);
+      ref.set({
+        'UID': user.uid,
+        'name': nameTextEditingController.text.trim(),
+        'email': emailTextEditingController.text.trim(),
+      });
+    }
+
+    if (user != null) {
+      Map userDataMap = {
+        "name": nameTextEditingController.text.trim(),
+        "email": emailTextEditingController.text.trim(),
+      };
+      userResf.child(user.uid).set(userDataMap);
+      displayToastMessage(
+          "Congradulations Your Account has been Created", context);
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
+    } else {
+      displayToastMessage("New user has not been Created", context);
+    }
+  }
+
+  movetolastScreen() {
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => HomePage()));
   }
 }
 
