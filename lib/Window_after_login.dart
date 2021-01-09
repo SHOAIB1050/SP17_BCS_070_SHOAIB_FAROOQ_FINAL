@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'AddEditNote.dart';
 import 'AddNote.dart';
+import 'package:share/share.dart';
 
 class WindowAfierLogin extends StatefulWidget {
   final String uid;

@@ -4,6 +4,7 @@ import 'Window_after_login.dart';
 import 'AddNote.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:share/share.dart';
 
 enum NoteMode { Editing, Adding }
 
@@ -132,6 +133,12 @@ class NoteState extends State<Note> {
                             uid: uid, name: name, email: email)),
                     (Route<dynamic> route) => false,
                   );
+                }),
+                _NoteButton('Share', Colors.blue, () {
+                  final title = _titleController.text;
+                  final text = _textController.text;
+                  final datetime = _dateTimeController.text;
+                  Share.share(_textController.text);
                 }),
                 Container(
                   height: 16.0,

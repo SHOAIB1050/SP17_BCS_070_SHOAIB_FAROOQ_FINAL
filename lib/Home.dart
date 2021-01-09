@@ -6,6 +6,7 @@ import 'main.dart';
 import 'Window_after_login.dart';
 import 'SingupPage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:share/share.dart';
 
 class HomePage extends StatefulWidget {
   @override
